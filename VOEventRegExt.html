@@ -101,29 +101,30 @@ href="http://www.ivoa.net/misc/ivoa_pr.css" type="text/css"/> -->
   <hr/>
 </div>
 
-<div id="main">  
+<div id="main">
 <h2><a id="abstract" name="abstract">Abstract</a></h2>
-<p>
-The VOEvent format has been a recommendation of the IVOA since 2006, and is gaining wide acceptance. 
-The purpose is to announce celestial transient events that may need rapid follow-up observation, and it is 
-designed so that automated systems, as well as humans, can make decisions about VOEvent packets. This document defines 
-a way in which the Registry infrastructure of the Virtual Observatory can be used to allow publication,
-discovery, and utilization of VOEvent resources. We define a new
-  registry extension schema - VOEventRegExt - that specifies three new
-  types of resource: VOEventStream, VOEventServer and VOEventAnnotator.
-The stream resource describes a scientifically coherent collection of events; that come from the same 
-motivation, team, project, or experiment; each event of a stream uses the same vocabulary (parameters)
-to describe events; while the primary thrust of the VOEvent work is responding to future events, a stream
-can also describe events that have already happened.
-The server resource describes which computers and interfaces can be
-  used to receive future events from (subscription capability), run
-  queries on past events (query capability), and disseminate events
-  (publish capability);
-it is described by the streams that it knows, and then by the
-  capabilites it offers for each of those streams. Finally the
-  annotator resource describes services which receive an event, do
-  something with it, such as a catalog lookup, and then return
-  additional information about the event.
+
+<p>The VOEvent format has been a recommendation of the IVOA since 2006, and
+is gaining wide acceptance.  The purpose is to announce celestial transient
+events that may need rapid follow-up observation, and it is designed so that
+automated systems, as well as humans, can make decisions about VOEvent
+packets. This document defines a way in which the Registry infrastructure of
+the Virtual Observatory can be used to allow publication, discovery, and
+utilization of VOEvent resources. We define a new registry extension schema
+&mdash; VOEventRegExt &mdash; that specifies three new types of resource:
+VOEventStream, VOEventServer and VOEventAnnotator.  The stream resource
+describes a scientifically coherent collection of events; that come from the
+same motivation, team, project, or experiment; each event of a stream uses the
+same vocabulary (parameters) to describe events; while the primary thrust of
+the VOEvent work is responding to future events, a stream can also describe
+events that have already happened. The server resource describes which
+computers and interfaces can be used to receive future events from
+(subscription capability), run queries on past events (query capability), and
+disseminate events (publish capability); it is described by the streams that
+it knows, and then by the capabilites it offers for each of those streams.
+Finally the annotator resource describes services which receive an event, do
+something with it, such as a catalog lookup, and then return additional
+information about the event.
 </p>
 
 <h2 style="display: none;">Preface</h2>
@@ -146,6 +147,7 @@ Recommendations and other technical documents</a> can be found at
 http://www.ivoa.net/Documents/.
 </p>
 
+
 <h3><a id="acknowledge" name="acknowledge">Acknowledgements</a></h3>
 
 <p>
@@ -162,6 +164,7 @@ href="http://erc.europa.eu/">European Research Council</a> via Advanced
 Investigator Grant 247295.
 </p>
 
+
 <h3><a name="conf"> Conformance-related definitions</a></h3>
 <p>
 The words "MUST", "SHALL", "SHOULD", "MAY", "RECOMMENDED", and
@@ -176,21 +179,19 @@ to conduct astronomical research, education, and outreach.
 Virtual Observatory Alliance (IVOA)</strong></a> is a global
 collaboration of separately funded projects to develop standards and
 infrastructure that enable VO applications.
-
 </p><p>
 XML document <a name="d:valid"><strong>validation</strong></a> is a
 software process that checks that an XML document is not only
 well-formed XML but also conforms to the syntax rules defined by the
-applicable schema.  Typically, when the schema is defined by one or more 
+applicable schema.  Typically, when the schema is defined by one or more
 XML Schema [<a href="#schema">Schema</a>] documents (see
-
 <a href="#synnot">next section</a>), validation refers to checking for
 conformance to the syntax described in those Schema documents.  This
 document describes additional syntax constraints that cannot be
 enforced solely by the rules of XML Schema; thus, in this document,
 use of the term validation includes the extra checks that goes beyond
 common Schema-aware parsers which ensure conformance with this
-document.  
+document.
 </p>
 
 
@@ -210,16 +211,15 @@ known as XML Schema [<a href="#schema">Schema</a>].</p>
 This document defines the VOEventRegExt schema using XML Schema.  The
 full Schema document is listed in <a href="#appA">Appendix A</a>.
 Parts of the schema appear within the main sections of this document;
-however, documentation nodes have been left out for the sake of brevity.  
+however, documentation nodes have been left out for the sake of brevity.
 </p>
 
 <p>
-
 Reference to specific elements and types defined in the VOEventRegExt
 schema include the namespaces prefix, <code>voe</code>, as in
 <code>voe:VOEventStream</code> (a type defined in the VOEventRegExt schema).
-Use of the <code>voe</code> prefix in compliant instance documents is 
-not required (see <a href="#ns">section 3</a>); its use in this
+Use of the <code>voe</code> prefix in compliant instance documents is
+not required (see <a href="#ns">Section 3</a>); its use in this
 document is simply to indicate that it is an entity defined in the
 VOEventRegExt schema.  <!-- References to (local) elements are further
 labelled by enclosing the name in the XML tag brackets, as in
@@ -262,7 +262,7 @@ labelled by enclosing the name in the XML tag brackets, as in
          </li><li> <a href="#egvoeventserver">6.2. Example of a VOEventServer</a>
 	 </li><li> <a href="#egvoeventannotator">6.3. Example of a VOEventAnnotator</a>
        </li></ul>
-  
+
   </li><li><a href="#appA">Appendix A: the VOEventRegExt XML Schema</a></li>
 </ul>
 <hr>
@@ -270,59 +270,58 @@ labelled by enclosing the name in the XML tag brackets, as in
 
 <h2>1. <a id="intro" name="Intro">Introduction</a></h2>
 <p>
-"Real-time astronomy" is an increasingly important component of modern astronomy, the
-study of rapid phenomena in the sky such as supernovae, cataclysmic
-variables, blazars, gamma-ray bursts, microlensing, etc.  Traditional
-event reporting systems include the <i>Central Bureau for Astronomical
-Telegrams</i> <a href="#ref1">[1]</a> and the <i> Astronomers
-Telegram</i> <a href="#ref2">[2]</a>, 
-which are written in natural language, and inform astronomers so that they can
-personally run follow-up observations. However, real-time astronomy
-can discover more science by automation: making rapid decisions in
-seconds without the need to wait for humans to wake up. Automation is also necessary to deal with large numbers of events, such as from LSST in years to come, and it also allows machines to fetch and collate other relevant data that may elucidate the reason for an event, and
-also improve the ability to decide and prioritize follow-up
-observation.
+"Real-time astronomy" is an increasingly important component of modern
+astronomy, the study of rapid phenomena in the sky such as supernovae,
+cataclysmic variables, blazars, gamma-ray bursts, microlensing, etc.
+Traditional event reporting systems include the <i>Central Bureau for
+Astronomical Telegrams</i> <a href="#ref1">[1]</a> and the <i> Astronomers
+Telegram</i> <a href="#ref2">[2]</a>, which are written in natural language,
+and inform astronomers so that they can personally run follow-up observations.
+However, real-time astronomy can discover more science by automation: making
+rapid decisions in seconds without the need to wait for humans to wake up.
+Automation is also necessary to deal with large numbers of events, such as
+from LSST in years to come, and it also allows machines to fetch and collate
+other relevant data that may elucidate the reason for an event, and also
+improve the ability to decide and prioritize follow-up observation.
 </p><p>
-The IVOA has defined a standard information packet &mdash;
-VOEvent <a href="#ref3">[3]</a> &mdash; to capture the details about a transient celestial
-event for such automated systems. There is, however, also an
-infrastructure to support the distribution and dissemination of the
-event packets, consisting of publishers, brokers, repositories, and
-details of how these can be found and utilized, e.g., what network
-protocols are used, which feature security, what interfaces do they
-have, etc., are needed. We will achieve this with the Registry
-infrastructure of the virtual observatory, a distributed,
-international metadata repository. In this document we will define
-how VOEvent sources and resources are recorded in the registry.
+The IVOA has defined a standard information packet &mdash; VOEvent <a
+href="#ref3">[3]</a> &mdash; to capture the details about a transient
+celestial event for such automated systems. There is, however, also an
+infrastructure to support the distribution and dissemination of the event
+packets, consisting of publishers, brokers, repositories, and details of how
+these can be found and utilized, e.g., what network protocols are used, which
+feature security, what interfaces do they have, etc., are needed. We will
+achieve this with the Registry infrastructure of the virtual observatory, a
+distributed, international metadata repository. In this document we will
+define how VOEvent sources and resources are recorded in the registry.
 </p><p>
-The primary conceptual idea of this document is the
-<b>VOEventStream</b>, a source of VOEvents. It is analogous to an astronomical catalog,
-in the sense that all the entries of the stream are uniformly
-observed, with each entry having the same parameters. A stream is also
-like a catalog in that it has authors who take scientific
-responsibility for the data. The most obvious difference, however, is
-that the catalog entries come from observations in the past, whereas
-an event stream may have both past and <i>future</i> events. An
-example of a stream is the set of events published by the Catalina
-Real-time Transient Survey <a href="#ref4">[4]</a>: by repeatedly scanning the sky, this project finds and announces each night a handful of sky positions where the source is
-much brighter than previous observations. Another example could be the
-stream of events from the NASA Swift orbiting
-observatory. Complementary to the VOEventStream are the concepts of the
-<b>VOEventServer</b> which distributes actual data from
-streams and the <b>VOEventAnnotator</b> which acts on received events
-and generates further information about them. 
+The primary conceptual idea of this document is the <b>VOEventStream</b>, a
+source of VOEvents. It is analogous to an astronomical catalog, in the sense
+that all the entries of the stream are uniformly observed, with each entry
+having the same parameters. A stream is also like a catalog in that it has
+authors who take scientific responsibility for the data. The most obvious
+difference, however, is that the catalog entries come from observations in the
+past, whereas an event stream may have both past and <i>future</i> events. An
+example of a stream is the set of events published by the Catalina Real-time
+Transient Survey <a href="#ref4">[4]</a>: by repeatedly scanning the sky, this
+project finds and announces each night a handful of sky positions where the
+source is much brighter than previous observations. Another example could be
+the stream of events from the NASA Swift orbiting observatory. Complementary
+to the VOEventStream are the concepts of the <b>VOEventServer</b> which
+distributes actual data from streams and the <b>VOEventAnnotator</b> which
+acts on received events and generates further information about them.
 </p>
 
-</p><p>
+<p>
 One issue to consider in forming these collections of events as
-streams is the question of granularity arises: 
-should we, for example, make all the high-energy burst events into a single stream 
-(Swift + Integral + Fermi etc)? Or should each satellite have its own event stream? 
-Or should each instrument of each satellite have its own stream? This is of course 
+streams is the question of granularity arises:
+should we, for example, make all the high-energy burst events into a single stream
+(Swift + Integral + Fermi etc)? Or should each satellite have its own event stream?
+Or should each instrument of each satellite have its own stream? This is of course
 a matter of judgement; but we propose some basic guidelines:</p>
 <ul>
 <li> a stream should have single point of leadership and scientific
-  responsibility (the Author), so the idea of combining NASA and ESA 
+  responsibility (the Author), so the idea of combining NASA and ESA
 resources into a single stream seems inappropriate
   <li> a stream should have a single set of parameters (Params) for the event
   vocabulary, and the greater granularity implies a much larger number
@@ -336,6 +335,7 @@ more work for any subscriber (once for each stream).
 <h3>1.1 Using the Registry for VOEvents</h3>
 <p>
 The registry extension proposed here will make it easier to work with VOEvents. Some use cases are:
+</p>
 <ul>
 <li><b>Resolving an event</b>: the unique identifier for an event is a concatenation of a stream identifier
 and an event number within that stream. A question to the Registry finds which VOEventServer has 
@@ -344,10 +344,11 @@ a query capability for that stream, and then that server can be probed to get th
 <li><b>What is this event</b>: the event identifier contains the VOEventStream identifier, from which the Registry
 can produce the descriptive text, contact information for the responsible people, and so on.</li>
 
-<li><b>Subscription to a stream</b>: VOEventServers are being built to
-deliver events to those who want them by a variety of messaging protocols; in order for an astronomer to set this up, the Registry is asked which servers 
-provide the subscription capability for the given stream, so that the astronomer can work with that
-server to set up future delivery of events.</li>
+<li><b>Subscription to a stream</b>: VOEventServers are being built to deliver
+events to those who want them by a variety of messaging protocols; in order
+for an astronomer to set this up, the Registry is asked which servers provide
+the subscription capability for the given stream, so that the astronomer can
+work with that server to set up future delivery of events.</li>
 
 <li><b>Creating a stream</b>: a survey or project may wish to publish
 an event stream. The Registry will provide a way to define the nature
@@ -365,7 +366,6 @@ archive lookup or calculating some quantity. The Registry can be
 queried to discover services that provide specific tasks for a given
 event stream.
 </ul>
-</p>
 
 <h3>1.2 IVOA Architecture</h3>
 <p>The IVOA Architecture <a href="#ref5">[5]</a> provides a high-level
@@ -373,8 +373,6 @@ view of how IVOA standards work together to connect users and
 applications with providers of data and services, as depicted in the
 diagram in Fig. 1. </p>
 
-
-<p>
 <center>
 <font size="-1">
 <img src="voeventregext-in-arch.png" width="756"/> <br />
@@ -388,8 +386,6 @@ event-related infrastructure.
 </blockquote>
 </font>
 </center>
-</p>
-
 
 <p>In this architecture, users can leverage a variety of tools (from
 the User Layer) to discover event-related archives and services of
@@ -405,28 +401,36 @@ supports descriptions of event streams and services.</p>
 
 <h2>2. <a name="ids">Identifiers and VOEvents</a></h2>
 
+<p>
 The IVOA has established a system of <i>identifiers</i> <a
-href="#ref8">[8]</a> for <i>resources</i>, meaning a way 
-in which a metadata record can be retrieved about that resource; 
-in other words, a global digital library for astronomy resources. 
-The client may be in any country of the world, contacting a local registry node, which replicates 
-<i>all</i> resources -- every node knows what every other node knows. Resource 
-identifiers for the VO begin with <tt>ivo://</tt> 
-and are also called "IVORN" for International Virtual Observatory Resource Name.
+href="#ref8">[8]</a> for <i>resources</i>, meaning a way in which a metadata
+record can be retrieved about that resource; in other words, a global digital
+library for astronomy resources.  The client may be in any country of the
+world, contacting a local registry node, which replicates <i>all</i> resources
+-- every node knows what every other node knows. Resource identifiers for the
+VO begin with <tt>ivo://</tt> and are also called "IVORN" for International
+Virtual Observatory Resource Name.  The identifier syntax is set up in a
+precise way to give control to both supplier and registry maintainer:
+</p>
 
-The identifier syntax is set up in a precise way to give control to both supplier and
-registry maintainer:
 <pre>
 ivo://my.datacenter.here/resourceName#localName
 </pre>
-By splitting this into pieces, we can find other IVORNs buried inside. The IVORN rules say there 
-can only be one octothorpe (#) sign (or none) in the IVORN. If so, the <tt>localName </tt> (after the #) 
-is something not interpreted to the registry system. The part before the #, or the whole IVORN if there is no #,
-is like a call-number in the library, it is a reference to something known to the IVOA registry 
-system: a dataset, a cone-search service, a workflow component, an organization. In order to 
-create your own IVORNs, you will need an <i>Authority ID</i>, (for example <tt>ivo://my.datacenter.here</tt>),
-which most astronomy data centers already have.
-</p><p>
+
+<p>
+By splitting this into pieces, we can find other IVORNs buried inside. The
+IVORN rules say there can only be one octothorpe (#) sign (or none) in the
+IVORN. If so, the <tt>localName </tt> (after the #) is something not
+interpreted to the registry system. The part before the #, or the whole IVORN
+if there is no #, is like a call-number in the library, it is a reference to
+something known to the IVOA registry system: a dataset, a cone-search service,
+a workflow component, an organization. In order to create your own IVORNs, you
+will need an <i>Authority ID</i>, (for example
+<tt>ivo://my.datacenter.here</tt>), which most astronomy data centers already
+have.
+</p>
+
+<p>
 We propose in this document to add three new kinds of resource (also
 known as <i>extension schema</i>)
 to those that the registry handles already.
@@ -438,15 +442,20 @@ soon as events occur; and VOEventAnnototor, which associates events
 with ancillary information.
 </p><p>
 The syntax for the IVORN for a VOEvent is:
+</p>
 <pre>
 ivo://my.datacenter.here/streamName#eventName
 </pre>
-An event is resolved at the registry as follows:
-By splitting on the # sign, we can look up the stream in the registry and find the meaning of the
-quoted parameters. We can query the registry for services which handle that stream, in order to 
-probe the event repositories for the event primary data and annotations that may have arisen 
-about that event. Different repositories can add new data as they wish.
+
+<p>
+An event is resolved at the registry as follows: By splitting on the #
+sign, we can look up the stream in the registry and find the meaning of the
+quoted parameters. We can query the registry for services which handle that
+stream, in order to probe the event repositories for the event primary data
+and annotations that may have arisen about that event. Different repositories
+can add new data as they wish.
 </p>
+
 <p>It should be noted that, as discussed in <a href="#ref9">[9]</a>,
 the use of the fragment (#) in the VOEvent identifier is contrary to
 the prescription in the URI definition (IETF RFC 3986 <a
@@ -507,28 +516,33 @@ the set of possible paramteters and their meanings is defined in the stream reco
 </p><p>
 In VOEvent, the parameter definition follows, to a great extent,  the VOTable standard. Each <tt>Param</tt>
 element has:
+</p>
 <ul>
-<li><b><tt>name</tt></b>: the name of the parameter, eg "JulianDay", "Rmagnitude"</li>
+<li><b><tt>name</tt></b>: the name of the parameter, eg "JulianDay", "Rmagnitude".</li>
 <li><b><tt>description</tt></b>: a short description in natural language of the parameter.</li>
 <li><b><tt>ucd</tt></b>: the semantic type of the parameter, for example "time.epoch" for a Julian Day, or "phot.mag;em.opt.R" for 
 an R magnitude. <a href="#ref11">[11]</a></li>
 <li><b><tt>unit</tt></b>: the units of the quantity, if appropriate,
-for example "day", or "mag" for the examples above <a href="#ref12">[12]</a></li>
+for example "day", or "mag" for the examples above. <a href="#ref12">[12]</a></li>
 <li><b><tt>dataType</tt></b>: the kind of quantity that the value has,
-for example "float", "char"</i>
+for example "float", "char".
 <!-- <font color=red>What about enumerated values eg TelecopeWorkingProperly could be "yes" or "no"</font> -->
 </li>
-<li><b><tt>value</tt></b>: the value of the parameter, a number or string </li>
+<li><b><tt>value</tt></b>: the value of the parameter, a number or string.</li>
 </ul>
 
+<p>
 Here is an example of a parameter element from the VOTable specification, which
 is also valid in the <tt>&lt;What&gt;</tt>; section of the VOEvent:
+</p>
 
 <pre>
 &lt;Param name="max" ucd="meta.number" datatype="int" value="50"&gt;
     &lt;Description&gt;Maximal number of records to retrieve&lt;/Description&gt;
 &lt;/Param&gt;
 </pre>
+
+<p>
 In the next section, we split the definition of the parameter from its value. The definition resides in the registry
 with the VOEventStream, and the value resides in the VOEvent itself.
 </p>
@@ -556,19 +570,21 @@ Parameters can be collected into groups in VOEvent, for example, a measurement a
     &lt;Param name="error" ucd="phot.mag;em.opt.R;stat.err" datatype="float" value="0.1"&gt;
 &lt;/Group&gt;
 </pre>
+</p>
+<p>
 To build a parameter template for a VOEventStream, the same structure can be used, but without the "value" attibutes. 
 Note also that VOEvents and VOEventStreams may not have Groups within Groups: a Group can <b>only</b> contain Param elements,
 not other Groups.
 </p> <p>
 The same rules of uniqueness are in force for parameter templates and Groups in VOEventStream, 
 as for Params and Groups in VOEvent:
+</p>
 <ul>
 <li>Each Param must have a name &mdash; a Group without a name is equivalent to having a name which is the null string.</li>
 <li>For Params not in a Group, names must be unique among them.</li>
 <li>For Params in a given Group, names must be unique among them.</li>
 <li>Groups must have unique names, (meaning in partiular that only one Group can have no name).</li>
 </ul>
-</p>
 
 
 <h3>3.2. <a name="voeventserver">VOEventServer</a></h3>
@@ -585,28 +601,38 @@ dissemination into the broader event
 community. A query capability implies the existence of a
 request-response mechanism by which queries can be made and results
 returned, although this could be as simple as a web page with forms by which a collection of events can be browsed in some way.
-</p><p>
-The capability of a server is split further into <b>Interfaces</b>, which express precisely how the
-capability can be accessed by a client. For example, subscription capability could be achieved 
-by having email, instant messaging, or text message sent; these are three different interfaces to
-the subscription capability, and there is different metadata associated with each (email address vs. phone number, for example). Having mentioned these basic concepts of the VO registry, we can now
-define the parts of the VOEventServer definition:
 </p>
+
+<p>
+The capability of a server is split further into <b>Interfaces</b>, which
+express precisely how the capability can be accessed by a client. For example,
+subscription capability could be achieved by having email, instant messaging,
+or text message sent; these are three different interfaces to the subscription
+capability, and there is different metadata associated with each (email
+address vs. phone number, for example). Having mentioned these basic concepts
+of the VO registry, we can now define the parts of the VOEventServer
+definition:
+</p>
+
 <h4>3.2.1. Curation, Content</h4>
-<p>This is about who is running the service, description and links about the service, and other information. It is
-precisely the same kind of XML as all registry resources have, as alluded to in the section above.</p>
+<p>
+This is about who is running the service, description and links about the service, and other information. It is
+precisely the same kind of XML as all registry resources have, as alluded to in the section above.
 </p>
 <h4>3.2.2. VOEventStreams</h4>
 <p>
-Here the server record lists the streams to which it can provide access, with a set of &lt;VOEventStream&gt; 
-elements, each of which has the IVORN of a stream. Further into the VOEventServer document is where ways of accessing 
+Here the server record lists the streams to which it can provide access, with a set of &lt;VOEventStream&gt;
+elements, each of which has the IVORN of a stream. Further into the VOEventServer document is where ways of accessing
 those streams are defined.
 </p>
 <h4>3.2.3. Capabilities</h4>
+
+<p>
 Capabilities are expressed in the VOEventServer as one of either
 "Subscription", "Query", or "Publish".
 Each of these capabilities can be available for each stream, perhaps a subscription capability for stream X
 and a Query capability for stream Y.
+</p>
 
 <h4>3.2.4. Interfaces</h4>
 A capability is a somewhat abstract notion, for example, the general idea of subscribing to event streams.
@@ -645,14 +671,18 @@ VOEventRegExt schema and describes their meaning.
 
 <h3>4.1 <a name="restype">Resource Type Extensions</a></h3>
 
+<p>
 The VOEventRegExt schema defines two extensions of the base
 <code>vr:Resource</code> type for describing two specific types of
 resources:<code>voe:DataStream</code> and
 <code>voe:VOEventStream</code>; an extension of the
 <code>vr:Service</code> resource type for <code>voe:VOEventAnnotator</code>; and an extension
 of the <code>vs:DataService</code> resource type for <code>voe:VOEventServer</code>.
+</p>
 
 <h4>4.1.1 The DataStream Resource Type</h4>
+
+<p>
 The DataStream resource type is used to describe a dynamic source of
 data rather than a static one such as a catalog. It extends the <a
 href="http://www.ivoa.net/Documents/REC/ReR/VOResource-20080222.html#d:Resource">Resource type</a> by adding five additional
@@ -664,9 +694,7 @@ schema <a href="#ref13">[13]</a> but this uses local type definitions and so can
 restricted or extended.
 </p>
 
-<p>
-<a name="DataStream">
-</a></p><div class="schemaOuter">
+<div class="schemaOuter">
 <div class="schemaHeader"><a name="DataStream">voe:DataStream Type Schema Definition</a></div>
 <div class="schemaInner">
 <pre><a name="DataStream">&lt;xs:complexType name="DataStream"&gt;
@@ -689,7 +717,6 @@ restricted or extended.
 &lt;/xs:complexType&gt;
 </a></pre>
 </div></div>
-<p></p>
 
 <p>
 <table border="2" width="100%">
@@ -769,25 +796,32 @@ held in and over the resource.</td>
               </td> 
           </tr></tbody></table>
       </td></tr>
-  <tr><td valign="top">securityURL</td>
-      <td valign="top"><table border="0" width="100%">
-          <tbody><tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>RM Name:</em></td>
-              <td valign="top">securityURL</td>
-          </tr>
-          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
-              <td valign="top">URI:<code>xs:anyURI</code></td>
-          </tr>
-          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
-              <td valign="top" width="90%">A link to further security
-                     information for the stream, e.g., its PGP key</td>  
-          </tr>
-          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
-              <td valign="top">optional; multiple occurrences allowed</td>
-          </tr>
-              </tbody></table>
-              </td> 
-          </tr></tbody></table>
-      </td></tr>
+  <tr>
+      <td valign="top">securityURL</td>
+      <td valign="top">
+          <table border="0" width="100%">
+              <tbody>
+                  <tr bgcolor="#dddddd">
+                      <td nowrap="nowrap" valign="top"><em>RM Name:</em></td>
+                      <td valign="top">securityURL</td>
+                  </tr>
+                  <tr bgcolor="#f5f5f5">
+                      <td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+                      <td valign="top">URI:<code>xs:anyURI</code></td>
+                  </tr>
+                  <tr bgcolor="#dddddd">
+                      <td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+                      <td valign="top" width="90%">A link to further security
+                             information for the stream, e.g., its PGP key</td>
+                  </tr>
+                  <tr bgcolor="#f5f5f5">
+                      <td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
+                      <td valign="top">optional; multiple occurrences allowed</td>
+                  </tr>
+              </tbody>
+          </table>
+      </td>
+  </tr>
       <tr><td valign="top">coverage</td>
       <td valign="top"><table border="0" width="100%">
           <tbody><tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>RM Name:</em></td>
@@ -813,11 +847,8 @@ held in and over the resource.</td>
               </td> 
           </tr></tbody></table>
       </td></tr>
-
-      
-</tbody>
+  </tbody>
 </table>
-</p>
 
 <h4>4.1.2 The VOEventStream Resource Type</h4>
 The VOEventStream resource type is used to describe a data stream
@@ -841,7 +872,6 @@ DataStream type by adding one additional element: <code>dictionary</code>.
 &lt;/xs:complexType&gt;
 </a></pre>
 </div></div>
-<p></p>
 
 <p>
 <table border="2" width="100%">
@@ -868,16 +898,15 @@ DataStream type by adding one additional element: <code>dictionary</code>.
       </td></tr>
 </tbody>
 </table>
-</p>
 
+<p>
 The <code>&lt;dictionary&gt;</code> element is of the complex type
 <code>voe:DataDictionary</code> which provides the defining metadata for the
 <code>&lt;Param&gt;</code> and <code>&lt;Group&gt;</code> elements
 employed in the <code>&lt;What&gt;</code> section of a VOEvent packet:
+</p>
 
-<p>
-<a name="DataDictionary">
-</a></p><div class="schemaOuter">
+<div class="schemaOuter">
 <div class="schemaHeader"><a name="DataDictionary">voe:DataDictionary Type Schema Definition</a></div>
 <div class="schemaInner">
 <pre><a name="DataDictionary">&lt;xs:complexType name="DataDictionary"&gt;
@@ -894,7 +923,6 @@ employed in the <code>&lt;What&gt;</code> section of a VOEvent packet:
 &lt;/xs:complexType&gt;
 </a></pre>
 </div></div>
-<p></p>
 
 Note the initial capitalisation of the <code>&lt;Group&gt;</code> and
 <code>&lt;Param&gt;</code> elements for consistency with the
@@ -953,10 +981,8 @@ of a VOEvent packet.
           </tr></tbody></table>
       </td></tr>
 
-      
     </tbody>
 </table>
-</p>
 
 <p>Multiple dictionaries are possible within the same
 <code>&lt;VOEventStream&gt;</code> element with different
@@ -1009,17 +1035,17 @@ multiple dictionaries within the same element:
 	  </td></tr>
 	</tbody>
 </table>
-</p>
 
+<p>
 Parameters with a common semantic basis can be grouped together as a
 named <code>&lt;Group&gt;</code> element in the
 <code>&lt;What&gt;</code> section of a VOEvent packet. This is defined
 by a <code>&lt;WhatGroup&gt;</code> complex type in the
 <code>&lt;dictionary&gt;</code> element:
+</p>
 
-<p>
-<a name="WhatGroup">
-</a></p><div class="schemaOuter">
+
+<div class="schemaOuter">
 <div class="schemaHeader"><a name="WhatGroup">voe:WhatGroup Type Schema Definition</a></div>
 <div class="schemaInner">
 <pre><a name="WhatGroup">&lt;xs:complexType name="WhatGroup"&gt;
@@ -1033,9 +1059,9 @@ by a <code>&lt;WhatGroup&gt;</code> complex type in the
 &lt;/xs:complexType&gt;
 </a></pre>
 </div></div>
-<p></p>
 
-<p>
+<p />
+
 <table border="2" width="100%">
 <thead>
   <tr><th colspan="2" align="left">voe:WhatGroup Metadata Elements</th>
@@ -1078,10 +1104,8 @@ by a <code>&lt;WhatGroup&gt;</code> complex type in the
       </td></tr>
 </tbody>
 </table>
-</p>
 
 
-<p>
 <table border="2" width="100%">
 <thead>
   <tr><th colspan="2" align="left">voe:WhatGroup Attribute</th>
@@ -1101,16 +1125,14 @@ by a <code>&lt;WhatGroup&gt;</code> complex type in the
 	  </td></tr>
 	</tbody>
 </table>
-</p>
 
-Similarly <code>&lt;Param&gt;</code> elements, appearing both
-individually and collectively (in <code>&lt;Group&gt;</code> elements) in the 
-<code>&lt;What&gt;</code>
-section of a VOEvent, correspond to <code>&lt;WhatParam&gt;</code> complex types in the <code>&lt;dictionary&gt;</code> element:
+<p> Similarly <code>&lt;Param&gt;</code> elements, appearing both individually
+and collectively (in <code>&lt;Group&gt;</code> elements) in the
+<code>&lt;What&gt;</code> section of a VOEvent, correspond to
+<code>&lt;WhatParam&gt;</code> complex types in the
+<code>&lt;dictionary&gt;</code> element: </p>
 
-<p>
-<a name="WhatParam">
-</a></p><div class="schemaOuter">
+<div class="schemaOuter">
 <div class="schemaHeader"><a name="WhatParam">voe:WhatParam Type Schema Definition</a></div>
 <div class="schemaInner">
 <pre><a name="WhatParam">&lt;xs:complexType name="WhatParam"&gt;
@@ -1127,9 +1149,9 @@ section of a VOEvent, correspond to <code>&lt;WhatParam&gt;</code> complex types
 &lt;/xs:complexType&gt;
 </a></pre>
 </div></div>
-<p></p>
 
-<p>
+<p />
+
 <table border="2" width="100%">
 <thead>
   <tr><th colspan="2" align="left">voe:WhatParam Metadata Elements</th>
@@ -1155,12 +1177,11 @@ section of a VOEvent, correspond to <code>&lt;WhatParam&gt;</code> complex types
 
 </tbody>
 </table>
-</p>
 
 <p>The purpose of the <code>primary</code> attribute is to capture the
 VOEvent author's opinion regarding the importance of a particular
 parameter, especially in the context of displaying an abbreviated list
-of parameters in a UI. 
+of parameters in a UI.</p>
 
 <p>
 <table border="2" width="100%">
@@ -1210,35 +1231,45 @@ of parameters in a UI.
           </tr>
 	</tbody></table>
 	  </td></tr>
-  <tr><td valign="top">dataType</td>
+  <tr>
+      <td valign="top">dataType</td>
       <td valign="top"><table border="0" width="100%">
-
-          <tbody>
-          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
-              <td valign="top">composite: <code>vs:VOTScalarDataType</code></td>
-          </tr>
-          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
-              <td valign="top" width="90%">the type of data contained in the parameter</td>
-          </tr>
-          <tr bgcolor="#f5f5f5"><td nowrap="nowrap"
-          valign="top"><em>Allowed values:</em></td>
-              <td valign="top"><table border="0" width="100%">
-		<tbody><tr><td valign="top"><code>boolean</code></td></tr>
-<tr><td valign="top"><code>bit</code></td></tr>
-<tr><td valign="top"><code>unsignedByte</code></td></tr>
-<tr><td valign="top"><code>short</code></td></tr>
-<tr><td valign="top"><code>int</code></td></tr>
-<tr><td valign="top"><code>long</code></td></tr>
-<tr><td valign="top"><code>char</code></td></tr>
-<tr><td valign="top"><code>unicodeChar</code></td></tr>
-<tr><td valign="top"><code>float</code></td></tr>
-<tr><td valign="top"><code>double</code></td></tr>
-<tr><td valign="top"><code>floatComplex</code></td></tr>
-<tr><td valign="top"><code>doubleComplex</code></td></tr>
-<tr><td valign="top"><code>string</code></td></tr>
-	      </tr></tbody></table>
-	</tbody></table>
-	  </td></tr>
+          <table>
+              <tbody>
+                  <tr bgcolor="#f5f5f5">
+                      <td nowrap="nowrap" valign="top"><em>Value type:</em></td>
+                      <td valign="top">composite: <code>vs:VOTScalarDataType</code></td>
+                  </tr>
+                  <tr bgcolor="#dddddd">
+                      <td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
+                      <td valign="top" width="90%">the type of data contained in the parameter</td>
+                  </tr>
+                  <tr bgcolor="#f5f5f5">
+                      <td nowrap="nowrap" valign="top"><em>Allowed values:</em></td>
+                      <td valign="top"><table border="0" width="100%">
+                          <table>
+                                <tbody>
+                                    <tr><td valign="top"><code>boolean</code></td></tr>
+                                    <tr><td valign="top"><code>bit</code></td></tr>
+                                    <tr><td valign="top"><code>unsignedByte</code></td></tr>
+                                    <tr><td valign="top"><code>short</code></td></tr>
+                                    <tr><td valign="top"><code>int</code></td></tr>
+                                    <tr><td valign="top"><code>long</code></td></tr>
+                                    <tr><td valign="top"><code>char</code></td></tr>
+                                    <tr><td valign="top"><code>unicodeChar</code></td></tr>
+                                    <tr><td valign="top"><code>float</code></td></tr>
+                                    <tr><td valign="top"><code>double</code></td></tr>
+                                    <tr><td valign="top"><code>floatComplex</code></td></tr>
+                                    <tr><td valign="top"><code>doubleComplex</code></td></tr>
+                                    <tr><td valign="top"><code>string</code></td></tr>
+                               </tbody>
+                           </table>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </td>
+  </tr>
   <tr><td valign="top">use</td>
       <td valign="top"><table border="0" width="100%">
 

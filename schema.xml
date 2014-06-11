@@ -15,14 +15,17 @@
       <vm:schemaPrefix>xs</vm:schemaPrefix>
       <vm:targetPrefix>voe</vm:targetPrefix>
     </xs:appinfo>
-    <xs:documentation>An extension to the core resource metadata (VOResource) for describing VOEvent resources</xs:documentation>
+    <xs:documentation>An extension to the core resource metadata (VOResource)
+    for describing VOEvent resources</xs:documentation>
   </xs:annotation>
   <xs:import namespace="http://www.ivoa.net/xml/VOResource/v1.0" schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0"/>
   <xs:import namespace="http://www.ivoa.net/xml/VODataService/v1.0" schemaLocation="http://www.ivoa.net/xml/VODataService/v1.0"/>
   <xs:complexType name="DataStream">
     <xs:annotation>
       <xs:documentation>A stream of data.</xs:documentation>
-      <xs:documentation>Ideally this would be a restriction of vs:DataCollection but that has inline element declarations.</xs:documentation>
+      <xs:documentation>Ideally this would be a restriction of
+      vs:DataCollection but that has inline element
+      declarations.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="vr:Resource">
@@ -37,8 +40,9 @@
   </xs:complexType>
   <xs:complexType name="VOEventStream">
     <xs:annotation>
-      <xs:documentation>A source of events which are homogeneous, have unified scientific
-	purpose, meaning and leadership and use the same <![CDATA[<Param>]]> vocabulary.</xs:documentation>
+      <xs:documentation>A source of events which are homogeneous, have unified
+      scientific purpose, meaning and leadership and use the same
+      <![CDATA[<Param>]]> vocabulary.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="voe:DataStream">
@@ -46,7 +50,8 @@
           <xs:element maxOccurs="unbounded" minOccurs="0" name="dictionary" type="voe:DataDictionary">
             <xs:annotation>
               <xs:documentation>a description of the parameters used in the
-              <![CDATA[<What>]]> section of the VOEvent packets in the stream.</xs:documentation>
+              <![CDATA[<What>]]> section of the VOEvent packets in the
+              stream.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -155,8 +160,8 @@
     </xs:attribute>
     <xs:attribute name="primary" type="xs:int">
       <xs:annotation>
-        <xs:documentation>This specifies whether the parameter
-  is a primary one for UI display purposes.</xs:documentation>
+        <xs:documentation>This specifies whether the parameter is a primary
+        one for UI display purposes.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -199,12 +204,14 @@
         <xs:sequence>
           <xs:element name="supportsFilters" type="xs:boolean">
             <xs:annotation>
-              <xs:documentation>Indicates whether this subscription capability supports filtering of VOEvent packets</xs:documentation>
+              <xs:documentation>Indicates whether this subscription capability
+              supports filtering of VOEvent packets</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="accessControl" type="voe:AccessControl">
             <xs:annotation>
-              <xs:documentation>Indicates whether there are any access controls on subscription</xs:documentation>
+              <xs:documentation>Indicates whether there are any access
+              controls on subscription</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -213,20 +220,23 @@
   </xs:complexType>
   <xs:complexType name="Query">
     <xs:annotation>
-      <xs:documentation>The capabilities of a VOEvent query implementation</xs:documentation>
+      <xs:documentation>The capabilities of a VOEvent query
+      implementation</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="vr:Capability">
         <xs:sequence>
           <xs:element name="maxQueryRegionSize" type="voe:RegionSize" minOccurs="0">
             <xs:annotation>
-              <xs:documentation>The maximum query region size in spatial and temporal extent.</xs:documentation>
+              <xs:documentation>The maximum query region size in spatial and
+              temporal extent.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="maxRecords" type="xs:int" minOccurs="0">
             <xs:annotation>
-              <xs:documentation>The largest number of records that a query will return. A value
-	of zero or less indicates that there is no explicit limit.</xs:documentation>
+              <xs:documentation>The largest number of records that a query
+              will return. A value of zero or less indicates that there is no
+              explicit limit.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -237,18 +247,20 @@
     <xs:sequence>
       <xs:element name="long" type="xs:float">
         <xs:annotation>
-          <xs:documentation>THe maximum size in the longitude (R.A) direction</xs:documentation>
+          <xs:documentation>THe maximum size in the longitude (R.A)
+          direction</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="lat" type="xs:float">
         <xs:annotation>
-          <xs:documentation>The maximum size in the latitude (Dec.) direction</xs:documentation>
+          <xs:documentation>The maximum size in the latitude (Dec.)
+          direction</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="time" type="xs:float">
         <xs:annotation>
-          <xs:documentation>
-The maximum range along the temporal axis.</xs:documentation>
+          <xs:documentation> The maximum range along the temporal
+          axis.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -256,17 +268,16 @@ The maximum range along the temporal axis.</xs:documentation>
   <xs:complexType name="Jabber">
     <xs:annotation>
       <xs:documentation>A Jabber/XMPP interface</xs:documentation>
-      <xs:documentation>The accessURL element gives the Jabber
-    server endpoint</xs:documentation>
+      <xs:documentation>The accessURL element gives the Jabber server
+      endpoint</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="vr:Interface">
         <xs:sequence>
           <xs:element name="referenceURL" type="xs:anyURI" minOccurs="0">
             <xs:annotation>
-              <xs:documentation>A URL pointing to a human-readable
-    document describing this Jabber
-    interface.</xs:documentation>
+              <xs:documentation>A URL pointing to a human-readable document
+              describing this Jabber interface.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="description" type="xs:string" minOccurs="0">
@@ -276,7 +287,8 @@ The maximum range along the temporal axis.</xs:documentation>
           </xs:element>
           <xs:element name="feedNode" type="voe:Feed" minOccurs="1" maxOccurs="unbounded">
             <xs:annotation>
-              <xs:documentation>The name of the feed carrying VOEvent packets.</xs:documentation>
+              <xs:documentation>The name of the feed carrying VOEvent
+              packets.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -296,14 +308,16 @@ The maximum range along the temporal axis.</xs:documentation>
   <xs:complexType name="VTP">
     <xs:annotation>
       <xs:documentation>A VOEvent Transport Protocol interface</xs:documentation>
-      <xs:documentation>The accessURL element gives the server endpoint including port number</xs:documentation>
+      <xs:documentation>The accessURL element gives the server endpoint
+      including port number</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="vr:Interface">
         <xs:sequence>
           <xs:element name="referenceURL" type="xs:anyURI" minOccurs="0">
             <xs:annotation>
-              <xs:documentation>A URL pointing to a human-readable document describing this TCPV interface.</xs:documentation>
+              <xs:documentation>A URL pointing to a human-readable document
+              describing this TCPV interface.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="description" type="xs:string" minOccurs="0">
@@ -313,7 +327,8 @@ The maximum range along the temporal axis.</xs:documentation>
           </xs:element>
           <xs:element name="signed" type="xs:boolean" minOccurs="0">
             <xs:annotation>
-              <xs:documentation>This indicates whether events from this interface will be digitally signed or not.</xs:documentation>
+              <xs:documentation>This indicates whether events from this
+              interface will be digitally signed or not.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -330,7 +345,8 @@ The maximum range along the temporal axis.</xs:documentation>
         <xs:sequence>
           <xs:element name="referenceURL" type="xs:anyURI" minOccurs="0">
             <xs:annotation>
-              <xs:documentation>A URL pointing to a human-readable document describing this RSS interface.</xs:documentation>
+              <xs:documentation>A URL pointing to a human-readable document
+              describing this RSS interface.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="description" type="xs:string" minOccurs="0">
@@ -378,7 +394,8 @@ The maximum range along the temporal axis.</xs:documentation>
         </xs:element>
         <xs:element name="parameters" type="voe:DataDictionary" minOccurs="1">
           <xs:annotation>
-            <xs:documentation>The set of parameters which are required by this service</xs:documentation>
+            <xs:documentation>The set of parameters which are required by this
+            service</xs:documentation>
           </xs:annotation>
         </xs:element>
       </xs:sequence>

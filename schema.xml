@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema"
+           xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1"
+           xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+           xmlns:voe="http://www.ivoa.net/xml/VOEventRegExt/v0.1"
+           xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.ivoa.net/xml/VOEventRegExt/v0.1"
+           elementFormDefault="unqualified"
+           attributeFormDefault="unqualified"
+           version="1.0">
+  <xs:annotation>
+    <xs:appinfo>
+      <vm:schemaName>VOEvent</vm:schemaName>
+      <vm:schemaPrefix>xs</vm:schemaPrefix>
+      <vm:targetPrefix>voe</vm:targetPrefix>
+    </xs:appinfo>
+    <xs:documentation>An extension to the core resource metadata (VOResource) for describing VOEvent resources</xs:documentation>
+  </xs:annotation>
+  <xs:import namespace="http://www.ivoa.net/xml/VOResource/v1.0" schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0"/>
+  <xs:import namespace="http://www.ivoa.net/xml/VODataService/v1.0" schemaLocation="http://www.ivoa.net/xml/VODataService/v1.0"/>
+  <xs:complexType name="DataStream">
+    <xs:annotation>
+      <xs:documentation>A stream of data.</xs:documentation>
+      <xs:documentation>Ideally this would be a restriction of vs:DataCollection but that has inline element declarations.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="vr:Resource">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="facility" type="vr:ResourceName"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="instrument" type="vr:ResourceName"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="rights" type="vr:Rights"/>
+          <xs:element minOccurs="0" name="coverage" type="vs:Coverage"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="VOEventStream">
+    <xs:annotation>
+      <xs:documentation>A source of events which are homogeneous, have unified scientific
+	purpose, meaning and leadership and use the same <![CDATA[<Param>]]> vocabulary.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="voe:DataStream">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="dictionary" type="voe:DataDictionary">
+            <xs:annotation>
+              <xs:documentation>a description of the parameters used in the
+              <![CDATA[<What>]]> section of the VOEvent packets in the stream.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DataDictionary">
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>a description of the dictionary's contents</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Group" type="voe:WhatGroup" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>a description of a Group element</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Param" type="voe:WhatParam" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>a description of a Param element</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>the name of the dictionary</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="version" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>the version of the dictionary</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="WhatGroup">
+    <xs:annotation>
+      <xs:documentation>a description of a group used in the
+      <![CDATA[<What>]]> section in a VOEvent packet.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>a description of the group</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Param" type="voe:WhatParam" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>a description of a Param element</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>the name of the group</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="WhatParam">
+    <xs:annotation>
+      <xs:documentation>a description of a parameter used in the
+      <![CDATA[<What>]]> section in a VOEvent packet.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>a description of the parameter</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>the name of the parameter</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="unit" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>the unit associated with all values of the parameter
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ucd" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>the name of a unified content descriptor associated
+        with the parameter</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="dataType" type="vs:VOTScalarDataType">
+      <xs:annotation>
+        <xs:documentation>a type of data contained in the param</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="use" type="vs:ParamUse" default="optional">
+      <xs:annotation>
+        <xs:documentation>This specifies whether the use of the param is
+        mandatory in the <![CDATA[<What>]]> section of a VOEvent packet.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="std" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>If true, the meaning and use of this parameter is
+        reserved and defined by a standard model. If false, it represents a
+        data-specific parameter that extends beyond the standard. If not
+        provided, then the value is unknown.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="primary" type="xs:int">
+      <xs:annotation>
+        <xs:documentation>This specifies whether the parameter
+  is a primary one for UI display purposes.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="VOEventServer">
+    <xs:annotation>
+      <xs:documentation>a service that provides access to VOEvents</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="vr:Service">
+        <xs:sequence>
+          <xs:element name="voeventStream" type="vr:IdentifierURI" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>a VOEvent stream served by this resource.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Publish">
+    <xs:annotation>
+      <xs:documentation>The capabilities of a VOEvent publisher</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="vr:Capability">
+        <xs:sequence>
+          <xs:element name="accessURL" type="xs:anyURI" minOccurs="0"/>
+          <xs:element name="accessControl" type="voe:AccessControl" minOccurs="0"/>
+          <xs:element name="subscriberBase" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Subscription">
+    <xs:annotation>
+      <xs:documentation>The capabilities of a VOEvent subscription</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="vr:Capability">
+        <xs:sequence>
+          <xs:element name="supportsFilters" type="xs:boolean">
+            <xs:annotation>
+              <xs:documentation>Indicates whether this subscription capability supports filtering of VOEvent packets</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="accessControl" type="voe:AccessControl">
+            <xs:annotation>
+              <xs:documentation>Indicates whether there are any access controls on subscription</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Query">
+    <xs:annotation>
+      <xs:documentation>The capabilities of a VOEvent query implementation</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="vr:Capability">
+        <xs:sequence>
+          <xs:element name="maxQueryRegionSize" type="voe:RegionSize" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>The maximum query region size in spatial and temporal extent.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="maxRecords" type="xs:int" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>The largest number of records that a query will return. A value
+	of zero or less indicates that there is no explicit limit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RegionSize">
+    <xs:sequence>
+      <xs:element name="long" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>THe maximum size in the longitude (R.A) direction</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="lat" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>The maximum size in the latitude (Dec.) direction</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="time" type="xs:float">
+        <xs:annotation>
+          <xs:documentation>
+The maximum range along the temporal axis.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Jabber">
+    <xs:annotation>
+      <xs:documentation>A Jabber/XMPP interface</xs:documentation>
+      <xs:documentation>The accessURL element gives the Jabber
+    server endpoint</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="vr:Interface">
+        <xs:sequence>
+          <xs:element name="referenceURL" type="xs:anyURI" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A URL pointing to a human-readable
+    document describing this Jabber
+    interface.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="description" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the Jabber feed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="feedNode" type="voe:Feed" minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>The name of the feed carrying VOEvent packets.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Feed">
+    <xs:annotation>
+      <xs:documentation>This represents an individual VOEvent feed</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="streamId" type="vr:IdentifierURI"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="VTP">
+    <xs:annotation>
+      <xs:documentation>A VOEvent Transport Protocol interface</xs:documentation>
+      <xs:documentation>The accessURL element gives the server endpoint including port number</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="vr:Interface">
+        <xs:sequence>
+          <xs:element name="referenceURL" type="xs:anyURI" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A URL pointing to a human-readable document describing this TCPV interface.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="description" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the Jabber feed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="signed" type="xs:boolean" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>This indicates whether events from this interface will be digitally signed or not.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RSS">
+    <xs:annotation>
+      <xs:documentation>A RSS interface</xs:documentation>
+      <xs:documentation>The accessURL gives the endpoint for the RSS feed.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="vr:Interface">
+        <xs:sequence>
+          <xs:element name="referenceURL" type="xs:anyURI" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A URL pointing to a human-readable document describing this RSS interface.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="description" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>A description of the Jabber feed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="feed" type="voe:Feed" minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>The name of the feed carrying VOEvent packets.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="VOEventAnnotator">
+    <xs:annotation>
+      <xs:documentation>a service that acts on received VOEvents</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="vs:Service">
+        <xs:sequence>
+          <xs:element name="inputStream" type="voe:VOEventInputStream" minOccurs="1" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>An input event stream for the service.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="outputStream" type="vr:Identifier" minOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The output event stream produced by the service</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="VOEventInputStream">
+    <xs:complexContent>
+      <xs:sequence>
+        <xs:element name="identifier" type="vr:Identifier" minOccurs="1">
+          <xs:annotation>
+            <xs:documentation>The identifier for this VOEvent stream</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="parameters" type="voe:DataDictionary" minOccurs="1">
+          <xs:annotation>
+            <xs:documentation>The set of parameters which are required by this service</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

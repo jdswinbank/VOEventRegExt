@@ -3253,29 +3253,30 @@ has been properly registered, only the name and value are strictly necessary.
       "http://www.cbat.eps.harvard.edu/index.html">http://www.cbat.eps.harvard.edu/index.html</a><br />
 
       [2] The Astronomer's Telegram, <a href=
-      "http://www.astronomerstelegram.org">http://www.astronomerstelegram.org</a><br />
+      "http://www.astronomerstelegram.org/">http://www.astronomerstelegram.org/</a><br />
 
       [3] Seaman R., et al., Sky Event Reporting Metadata, IVOA Recommendation
       11 July 2011, <a href=
       "http://www.ivoa.net/Documents/VOEvent/20110711/">http://www.ivoa.net/Documents/VOEvent/20110711/</a><br />
 
       [4] The Catalina Real-time Transient Survey, <a href=
-      "http://crts.caltech.edu">http://crts.caltech.edu</a><br />
+      "http://crts.caltech.edu/">http://crts.caltech.edu/</a><br />
+
       [5] Arviset C., et al., IVOA Architecture, IVOA Note 23 November 2010,
       <a href=
-      "http://www.ivoa.net/Documents/Notes/IVOAArchitecture/index.html">http://www.ivoa.net/Documents/Notes/IVOAArchitecture/index.html</a><br />
+      "http://www.ivoa.net/Documents/Notes/IVOAArchitecture/20101123/">http://www.ivoa.net/Documents/Notes/IVOAArchitecture/20101123/</a><br />
 
       [6] Hanisch R., et al., Resource Metadata for the Virtual Observatory,
       IVOA Recommendation 02 March 2007, <a href=
-      "http://www.ivoa.net/Documents/latest/RM.html">http://www.ivoa.net/Documents/latest/RM.html</a><br />
+      "http://www.ivoa.net/documents/cover/RM-20070302.html">http://www.ivoa.net/documents/cover/RM-20070302.html</a></br />
 
       [7] Plante R., et al., VOResource: an XML Encoding Schema for Resource
       Metadata, IVOA Recommendation 22 February 2008, <a href=
-      "http://www.ivoa.net/Documents/latest/VOResource.html">http://www.ivoa.net/Documents/latest/VOResource.html</a><br />
+      "http://www.ivoa.net/documents/cover/VOResource-20080222.html">http://www.ivoa.net/documents/cover/VOResource-20080222.html</a><br />
 
       [8] Plante R., Linde T., Williams R., Noddle K., IVOA Identifiers, IVOA
       Recommendation 14 March 2007, <a href=
-      "http://www.ivoa.net/Documents/latest/IDs.html">http://www.ivoa.net/Documents/latest/IDs.html</a><br />
+      "http://www.ivoa.net/documents/cover/IDs-20070302.html">http://www.ivoa.net/documents/cover/IDs-20070302.html</a><br />
 
       [9] Gray N., URI fragments in IVOA specifications, IVOA Note 25 May 2012,
       <a href=
@@ -3288,7 +3289,7 @@ has been properly registered, only the name and value are strictly necessary.
 
       [11] Derriere S., et al., An IVOA Standard for Unified Content
       Descriptors, IVOA Recommendation 19 August 2005, <a href=
-      "http://www.ivoa.net/Documents/latest/UCD.html">http://www.ivoa.net/Documents/latest/UCD.html</a><br />
+      "http://www.ivoa.net/documents/cover/UCD-20050812.html">http://www.ivoa.net/documents/cover/UCD-20050812.html</a><br />
 
       [12] Derriere S., et al., Units in the VO, IVOA Proposed Recommendation
       20 August 2012, <a href=
@@ -3301,15 +3302,14 @@ has been properly registered, only the name and value are strictly necessary.
 
       [14] Allan A., Denny R.B., Swinbank J., VOEvent Transport Protocol, IVOA
       Note 04 September 2012, <a href=
-      "http://www.transientskp.org/static/vtp-1.2-draft.pdf">http://www.transientskp.org/static/vtp-1.2-draft.pdf</a><br />
-
+      "https://github.com/jdswinbank/vtp">https://github.com/jdswinbank/vtp</a>
 
       <h2>6. <a name="examples" id="examples">Examples</a></h2>
 
-      <h3>6.1. <a name="egvoeventstream" id="egvoeventstream">Example of a
-      VOEventStream</a></h3>
-      <pre>
+      <h3>6.1. <a name="egvoeventstream" id="egvoeventstream">Example of a VOEventStream</a></h3>
+
 <font size="-1">
+<pre>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;Resource xsi:type="voe:VOEventStream" created="2008-09-23T00:00:00Z" updated="2008-09-23T00:00:00Z" status="active" xsi:schemaLocation="http://www.ivoa.net/xml/VOEventRegExt/v1.0 VOEventRegExt.xsd" xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0" xmlns:voe="http://www.ivoa.net/xml/VOEventRegExt/v1.0" xmlns:stc="http://www.ivoa.net/xml/STC/stc-v1.30.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
@@ -3375,13 +3375,14 @@ has been properly registered, only the name and value are strictly necessary.
     &lt;/Group&gt;
   &lt;/dictionary&gt;
 &lt;/Resource&gt;
-</font>
 </pre>
+</font>
 
-      <h3>6.2. <a name="egvoeventserver" id="egvoeventserver">Example of a
-      VOEventServer</a></h3>
-      <pre>
-<font size="-1">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+      <h3>6.2. <a name="egvoeventserver" id="egvoeventserver">Example of a VOEventServer</a></h3>
+
+<font size="-1">
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;Resource xsi:type="voe:VOEventServer" created="2008-09-23T00:00:00Z" 
 updated="2008-09-23T00:00:00Z" status="active" 
@@ -3433,13 +3434,14 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
     &lt;supportsFilters&gt;true&lt;/supportsFilters&gt;
   &lt;/capability&gt;
 &lt;/Resource&gt;
-</font>
 </pre>
+</font>
 
-      <h3><font size="-1">6.3 <a name="egvoeventannotator" id=
-      "egvoeventannotator">Examples of a VOEventAnnotator</a></font></h3>
-      <pre>
-<font size="-1">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+      <h3>6.3 <a name="egvoeventannotator" id="egvoeventannotator">Examples of a VOEventAnnotator</a></h3>
+
+<font size="-1">
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 
 &lt;Resource xsi:type="voe:VOEventAnnotator" created="2008-09-23T00:00:00Z"
 updated="2008-09-23T00:00:00Z" status="active"
@@ -3484,8 +3486,8 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;/inputStream&gt;
   &lt;outputStream&gt;ivo://nvo.caltech.voeventnet/catot/sdssanno&lt;/outputStream&gt;
 &lt;/Resource&gt;
-</font>
 </pre>
+</font>
 
       <h2><font size="-1">Appendix A: <a name="appA" id="appA">The
       VOEventRegExt XML Schema</a></font></h2>

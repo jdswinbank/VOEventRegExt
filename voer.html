@@ -507,7 +507,8 @@ labelled by enclosing the name in the XML tag brackets, as in
       called "IVORN" for International Virtual Observatory Resource Name. The
       identifier syntax is set up in a precise way to give control to both
       supplier and registry maintainer:</p>
-      <pre>
+
+<pre>
 ivo://my.datacenter.here/resourceName#localName
 </pre>
 
@@ -534,9 +535,9 @@ ivo://my.datacenter.here/resourceName#localName
 
       <p>The syntax for the IVORN for a VOEvent is:</p>
 
-      <pre>
+<pre>
 ivo://my.datacenter.here/streamName#eventName
-      </pre>
+</pre>
 
       <p>An event is resolved at the registry as follows: By splitting on the #
       sign, we can look up the stream in the registry and find the meaning of
@@ -640,7 +641,7 @@ ivo://my.datacenter.here/streamName#eventName
         </li>
 
         <li><b><tt>dataType</tt></b>: the kind of quantity that the value has,
-        for example "float", "char". 
+        for example "float", "char".
         <!-- <font color=red>What about enumerated values eg TelecopeWorkingProperly could be "yes" or "no"</font> --></li>
 
         <li><b><tt>value</tt></b>: the value of the parameter, a number or
@@ -820,8 +821,18 @@ has been properly registered, only the name and value are strictly necessary.
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="DataStream"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="vr:Resource"&gt; &lt;xs:sequence&gt; &lt;xs:element name="facility" type="vr:ResourceName" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;xs:element name="instrument" type="vr:ResourceName" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;xs:element name="rights" type="vr:Rights" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;xs:element name="securityURL" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;xs:element name="coverage" type="vs:Coverage" minOccurs="0"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="DataStream"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="vr:Resource"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="facility" type="vr:ResourceName"/&gt;
+        &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="instrument" type="vr:ResourceName"/&gt;
+        &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="rights" type="vr:Rights"/&gt;
+        &lt;xs:element minOccurs="0" name="coverage" type="vs:Coverage"/&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -1073,10 +1084,12 @@ has been properly registered, only the name and value are strictly necessary.
         </tbody>
       </table>
 
-      <h4>4.1.2 The VOEventStream Resource Type</h4>The VOEventStream resource
-      type is used to describe a data stream consisting of VOEvent packets. The
-      VOEventStream type extends the DataStream type by adding one additional
-      element: <code>dictionary</code>.
+      <h4>4.1.2 The VOEventStream Resource Type</h4>
+
+      <p>The VOEventStream resource type is used to describe a data stream
+      consisting of VOEvent packets. The VOEventStream type extends the
+      DataStream type by adding one additional element:
+      <code>dictionary</code>.</p>
 
       <div class="schemaOuter">
         <div class="schemaHeader">
@@ -1085,8 +1098,15 @@ has been properly registered, only the name and value are strictly necessary.
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="VOEventStream"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="voe:DataStream"&gt; &lt;xs:sequence&gt; &lt;xs:element name="dictionary" type="voe:DataDictionary" minOccurs="0"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="VOEventStream"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="voe:DataStream"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element maxOccurs="unbounded" minOccurs="0" name="dictionary" type="voe:DataDictionary" /&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -1153,13 +1173,22 @@ has been properly registered, only the name and value are strictly necessary.
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="DataDictionary"&gt; &lt;xs:sequence&gt; &lt;xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;xs:element name="Group" type="voe:WhatGroup" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;xs:element name="Param" type="voe:WhatParam" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;/xs:sequence&gt; &lt;xs:attribute name="name" type="xs:string"/&gt; &lt;xs:attribute name="version" type="xs:string" default="1.0"/&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="DataDictionary"&gt;
+  &lt;xs:sequence&gt;
+    &lt;xs:element name="description" type="xs:string" minOccurs="0" /&gt;
+    &lt;xs:element name="Group" type="voe:WhatGroup" minOccurs="0" maxOccurs="unbounded" /&gt;
+    &lt;xs:element name="Param" type="voe:WhatParam" minOccurs="0" maxOccurs="unbounded" /&gt;
+  &lt;/xs:sequence&gt;
+  &lt;xs:attribute name="name" type="xs:string" /&gt;
+  &lt;xs:attribute name="version" type="xs:string" /&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
-      </div>Note the initial capitalisation of the <code>&lt;Group&gt;</code>
+      </div>
+
+      <p>Note the initial capitalisation of the <code>&lt;Group&gt;</code>
       and <code>&lt;Param&gt;</code> elements for consistency with the
       corresponding elements used in the <code>&lt;What&gt;</code> section of a
-      VOEvent packet.
+      VOEvent packet.</p>
 
       <table border="2" width="100%">
         <thead>
@@ -1367,8 +1396,13 @@ has been properly registered, only the name and value are strictly necessary.
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="WhatGroup"&gt; &lt;xs:sequence&gt; &lt;xs:element name="description" type="xs:string" minOccurs="0"/&gt; &lt;xs:element name="Param" type="voe:WhatParam" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;/xs:sequence&gt; &lt;xs:attribute name="name" type="xs:string"/&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="WhatGroup"&gt;
+  &lt;xs:sequence&gt;
+    &lt;xs:element name="description" type="xs:string" minOccurs="0" /&gt;
+    &lt;xs:element name="Param" type="voe:WhatParam" minOccurs="0" maxOccurs="unbounded" /&gt;
+  &lt;/xs:sequence&gt;
+  &lt;xs:attribute name="name" type="xs:string" /&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -1503,8 +1537,18 @@ has been properly registered, only the name and value are strictly necessary.
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="WhatParam"&gt; &lt;xs:sequence&gt; &lt;xs:element name="description" type="xs:string" minOccurs="0"/&gt; &lt;/xs:sequence&gt; &lt;xs:attribute name="name" type="xs:string" use="required"/&gt; &lt;xs:attribute name="unit" type="xs:string"/&gt; &lt;xs:attribute name="ucd" type="xs:string"/&gt; &lt;xs:attribute name="dataType" type="vs:VOTScalarDataType"/&gt; &lt;xs:attribute name="use" type="vs:ParamUse" default="optional"/&gt; &lt;xs:attribute name="std" type="xs:boolean"/&gt; &lt;xs:attribute name="primary" type="xs:boolean"/&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="WhatParam"&gt;
+  &lt;xs:sequence&gt;
+    &lt;xs:element name="description" type="xs:string" minOccurs="0" /&gt;
+  &lt;/xs:sequence&gt;
+  &lt;xs:attribute name="name" type="xs:string" use="required" /&gt;
+  &lt;xs:attribute name="unit" type="xs:string" /&gt;
+  &lt;xs:attribute name="ucd" type="xs:string" /&gt;
+  &lt;xs:attribute name="dataType" type="vs:VOTScalarDataType" /&gt;
+  &lt;xs:attribute name="use" type="vs:ParamUse" default="optional" /&gt;
+  &lt;xs:attribute name="std" type="xs:boolean" /&gt;
+  &lt;xs:attribute name="primary" type="xs:int" /&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -1828,7 +1872,7 @@ has been properly registered, only the name and value are strictly necessary.
       <p>The VOEventServer resource type is used to describe a server that
       provides VOEvent streams. It extends the <code>&lt;vs:Service&gt;</code>
       type by adding an additional element to the core set of metadata,
-      <code>&lt;voeventStream&gt;</code>.</p>
+      <code>&lt;VOEventStream&gt;</code>.</p>
 
       <div class="schemaOuter">
         <div class="schemaHeader">
@@ -1837,8 +1881,15 @@ has been properly registered, only the name and value are strictly necessary.
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="VOEventServer"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="vs:DataService"&gt; &lt;xs:sequence&gt; &lt;xs:element name="voeventStream" type="vr:IdentifierURI" minOccurs="0" maxOccurs="unbounded"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="VOEventServer"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="vr:Service"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="voeventStream" type="vr:IdentifierURI" minOccurs="0" maxOccurs="unbounded" /&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -1899,139 +1950,6 @@ has been properly registered, only the name and value are strictly necessary.
       elements; in particular, capabilities of type
       <code>&lt;voe:Publish&gt;</code>, <code>&lt;voe:Query&gt;</code> and
       <code>&lt;voe:Subscription&gt;</code>.</p>
-<!--
-<p>
-Abstract complex types are
-defined for both so that the value of the <code>standardID</code>
-attribute can be set to appropriate fixed URIs representing the service
-standards. For the <code>&lt;voe:Query&gt;</code>
-capability, this is the <code>QueryCapRestriction</code> complex type:
-</p>
-
-<p>
-<a name="QueryCapRestriction">
-</a></p><div class="schemaOuter">
-<div class="schemaHeader"><a name="QueryCapRestriction">voe:QueryCapRestriction Type Schema Definition</a></div>
-<div class="schemaInner">
-<pre><a name="QueryCapRestriction">&lt;xs:complexType name="QueryCapRestriction" abstract="true"&gt;
-  &lt;xs:complexContent&gt;
-    &lt;xs:restriction base="vr:Capability"&gt;
-      &lt;xs:sequence&gt;
-        &lt;xs:element name="validationLevel" type="vr:Validation"
-                    minOccurs="0" maxOccurs="unbounded" /&gt;
-        &lt;xs:element name="description" type="xs:token"
-                    minOccurs="0" /&gt;
-        &lt;xs:element name="interface" type="vr:Interface"
-                    minOccurs="0" maxOccurs="unbounded" /&gt;
-      &lt;/xs:sequence&gt;
-      &lt;xs:attribute name="standardID" type="vr:IdentifierURI" fixed="ivo://ivoa.net/std/VOEventQuery"
-                    use="required"/&gt;
-    &lt;/xs:restriction&gt;
-  &lt;/xs:complexContent&gt;
-&lt;/xs:complexType&gt;
-</a></pre>
-</div></div>
-<p></p>
-
-<p><p>
-<table border="2" width="100%">
-<thead>
-  <tr><th colspan="2" align="left">voe:QueryCapRestriction Metadata Elements</th>
-  </tr><tr><th>Element</th><th>Definition</th>
-</tr></thead>
-<tbody>
-  <tr><td valign="top">validationLevel</td>
-
-      <td valign="top"><table border="0" width="100%">
-          <tbody><tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>RM Name:</em></td>
-              <td valign="top">ResourceValidationLevel</td>
-          </tr>
-          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
-              <td valign="top">integer with required <code>validatedBy</code>
-
-                  attribute taking an ID: <code>vr:Validation</code>
-                  (see <a href="#validationLevel">definition</a> for
-                  listing of allowed values.) </td>
-          </tr>
-          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
-              <td valign="top" width="90%">
-
-                  An evaluation via a numeric grade that indicates the
-                  quality of the capability description and whether
-                  its implementation is functionally with applicable
-                  standards.</td>  
-          </tr>
-          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
-              <td valign="top">optional; multiple occurrences allowed</td>
-          </tr></tbody></table>
-      </td></tr>
-  <tr><td valign="top">description</td>
-
-      <td valign="top"><table border="0" width="100%">
-          <tbody><tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
-              <td valign="top">string: <code>xs:token</code></td>
-          </tr>
-          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
-              <td valign="top" width="90%">
-                 A human-readable description of what this capability 
-                 provides as part of the overall service
-              </td>
-
-          </tr>
-          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
-              <td valign="top">optional</td>
-          </tr></tbody></table>
-      </td></tr>
-  <tr><td valign="top">interface</td>
-      <td valign="top"><table border="0" width="100%">
-
-          <tbody><tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
-              <td valign="top">composite: <code>vr:Interface</code></td>
-          </tr>
-          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
-              <td valign="top" width="90%">
-                 a description of how to call the service to access
-                 this capability
-              </td>
-
-          </tr>
-          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Occurrences:</em></td>
-              <td valign="top">optional</td>
-          </tr></tbody></table>
-      </td></tr>
-</tbody>
-</table>
-</p>
-
-<p>The fixed URI representing the Query standard is defined by the <code>standardID</code> attribute:</p>
-
-<p>
-<a name="d:standardID">
-</a><table border="2" width="100%">
-<thead>
-  <tr><th colspan="2" align="left">voe:QueryCapRestriction Attribute</th>
-  </tr><tr><th>Attribute</th><th>Definition</th>
-</tr></thead>
-<tbody>
-  <tr><td valign="top"><code>standardID</code></td>
-
-      <td valign="top"><table border="0" width="100%">
-          <tbody><tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>RM Name:</em></td>
-              <td valign="top">Service.StandardURI</td>
-          </tr><tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Value type:</em></td>
-              <td valign="top">URI: <code>ivo://ivoa.net/std/VOEventQuery</code></td>
-          </tr>
-          <tr bgcolor="#dddddd"><td nowrap="nowrap" valign="top"><em>Semantic Meaning:</em></td>
-              <td valign="top" width="90%">the IVOA ID for the VOEvent SEAP standard.</td> 
-          </tr>
-          <tr bgcolor="#f5f5f5"><td nowrap="nowrap" valign="top"><em>Use:</em></td>
-              <td valign="top">Required</td> 
-          </tr></tbody></table>
-
-      </td></tr>
-</tbody>
-</table>
-</p> -->
 
       <p>The <code>Publish</code> capability is defined as an extension of
       <code>&lt;vr:Capability&gt;</code>:</p>
@@ -2043,8 +1961,17 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="Publish"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="vr:Capability"&gt; &lt;xs:sequence&gt; &lt;xs:element name="accessURL" type="xs:anyURI" minOccurs="0"/&gt; &lt;xs:element name="accessControl" type="voe:AccessControl" minOccurs="0"/&gt; &lt;xs:element name="subscriberBase" type="xs:string" minOccurs="0"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="Publish"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="vr:Capability"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="accessURL" type="xs:anyURI" minOccurs="0" /&gt;
+        &lt;xs:element name="accessControl" type="voe:AccessControl" minOccurs="0" /&gt;
+        &lt;xs:element name="subscriberBase" type="xs:string" minOccurs="0" /&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -2162,7 +2089,7 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
       </table>
 
       <p>The <code>accessControl</code> is of the complex type
-      <code>&lt;voe:AccessControl</code></p>
+      <code>&lt;voe:AccessControl&gt;</code></p>
 
       <div class="schemaOuter">
         <div class="schemaHeader">
@@ -2275,8 +2202,16 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="Query"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="vr:Capability"&gt; &lt;xs:sequence&gt; &lt;xs:element name="maxQueryRegionSize" type="voe:RegionSize" minOccurs="0"/&gt; &lt;xs:element name="maxRecords" type="xs:int" minOccurs="0"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="Query"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="vr:Capability"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="maxQueryRegionSize" type="voe:RegionSize" minOccurs="0" /&gt;
+        &lt;xs:element name="maxRecords" type="xs:int" minOccurs="0" /&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -2361,8 +2296,10 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
             </td>
           </tr>
         </tbody>
-      </table>The <code>&lt;maxQueryRegionSize&gt;</code> is of the complex
-      type <code>&lt;voe:RegionSize&gt;</code>:
+      </table>
+
+      <p>The <code>&lt;maxQueryRegionSize&gt;</code> is of the complex
+      type <code>&lt;voe:RegionSize&gt;</code>:</p>
 
       <div class="schemaOuter">
         <div class="schemaHeader">
@@ -2372,8 +2309,13 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="RegionSize"&gt; &lt;xs:sequence&gt; &lt;xs:element name="long" type="xs:float"/&gt; &lt;xs:element name="lat" type="xs:float"/&gt; &lt;xs:element name="time" type="xs:float"/&gt; &lt;/xs:sequence&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="RegionSize"&gt;
+  &lt;xs:sequence&gt;
+    &lt;xs:element name="long" type="xs:float" /&gt;
+    &lt;xs:element name="lat" type="xs:float" /&gt;
+    &lt;xs:element name="time" type="xs:float" /&gt;
+  &lt;/xs:sequence&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -2510,8 +2452,16 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="Subscription"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="voe:EventSubCapRestriction"&gt; &lt;xs:sequence&gt; &lt;xs:element name="supportsFilters" type="xs:boolean"/&gt; &lt;xs:element name="accessControl" type="voe:AccessControl"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="Subscription"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="vr:Capability"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="supportsFilters" type="xs:boolean" /&gt;
+        &lt;xs:element name="accessControl" type="voe:AccessControl" /&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt; </pre>
         </div>
       </div>
 
@@ -2620,8 +2570,17 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="VTP"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="vr:Interface"&gt; &lt;xs:sequence&gt; &lt;xs:element name="referenceURL" type="xs:anyURI" minOccurs="0"/&gt; &lt;xs:element name="description" type="xs:string" minOccurs="0"/&gt; &lt;xs:element name="signed" type="xs:boolean" minOccurs="0"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+  &lt;xs:complexType name="VTP"&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension base="vr:Interface"&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name="referenceURL" type="xs:anyURI" minOccurs="0" /&gt;
+          &lt;xs:element name="description" type="xs:string" minOccurs="0" /&gt;
+          &lt;xs:element name="signed" type="xs:boolean" minOccurs="0" /&gt;
+        &lt;/xs:sequence&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -2657,7 +2616,7 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
                     Meaning:</em></td>
 
                     <td valign="top" width="90%">A URL pointing to a
-                    human-readable document describing this TCPV
+                    human-readable document describing this VTP
                     interface.</td>
                   </tr>
 
@@ -2688,7 +2647,7 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
                     Meaning:</em></td>
 
                     <td valign="top" width="90%">a human-readable description
-                    of this TCPV interface.</td>
+                    of this VTP interface.</td>
                   </tr>
 
                   <tr bgcolor="#F5F5F5">
@@ -2747,8 +2706,17 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="Jabber"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="vr:Interface"&gt; &lt;xs:sequence&gt; &lt;xs:element name="referenceURL" type="xs:anyURI" minOccurs="0"/&gt; &lt;xs:element name="description" type="xs:string" minOccurs="0"/&gt; &lt;xs:element name="feedNode" type="voe:Feed" minOccurs="1" maxOccurs="unbounded"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="Jabber"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="vr:Interface"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="referenceURL" type="xs:anyURI" minOccurs="0" /&gt;
+        &lt;xs:element name="description" type="xs:string" minOccurs="0" /&gt;
+        &lt;xs:element name="feedNode" type="voe:Feed" minOccurs="1" maxOccurs="unbounded" /&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -2876,8 +2844,13 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="Feed"&gt; &lt;xs:simpleContent&gt; &lt;xs:extension base="xs:string"&gt; &lt;xs:attribute name="streamId" type="vr:IdentifierURI"/&gt; &lt;/xs:extension&gt; &lt;/xs:simpleContent&gt; &lt;/xs:complexType&gt;
-         </pre>
+&lt;xs:complexType name="Feed"&gt;
+  &lt;xs:simpleContent&gt;
+    &lt;xs:extension base="xs:string"&gt;
+      &lt;xs:attribute name="streamId" type="vr:IdentifierURI"/&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:simpleContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -2935,8 +2908,17 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="RSS"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="vr:Interface"&gt; &lt;xs:sequence&gt; &lt;xs:element name="referenceURL" type="xs:anyURI" minOccurs="0"/&gt; &lt;xs:element name="description" type="xs:string" minOccurs="0"/&gt; &lt;xs:element name="feed" type="voe:Feed" minOccurs="1" maxOccurs="unbounded"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="RSS"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="vr:Interface"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="referenceURL" type="xs:anyURI" minOccurs="0" /&gt;
+        &lt;xs:element name="description" type="xs:string" minOccurs="0" /&gt;
+        &lt;xs:element name="feed" type="voe:Feed" minOccurs="1" maxOccurs="unbounded" /&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -3068,8 +3050,16 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="VOEventAnnotator"&gt; &lt;xs:complexContent&gt; &lt;xs:extension base="vs:Service"&gt; &lt;xs:sequence&gt; &lt;xs:element name="inputStream" type="voe:VOEventInputStream" minOccurs="1" maxOccurs="unbounded"/&gt; &lt;xs:element name="outputStream" type="vr:Identifier" minOccurs="1"/&gt; &lt;/xs:sequence&gt; &lt;/xs:extension&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="VOEventAnnotator"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:extension base="vs:Service"&gt;
+      &lt;xs:sequence&gt;
+        &lt;xs:element name="inputStream" type="voe:VOEventInputStream" minOccurs="1" maxOccurs="unbounded" /&gt;
+        &lt;xs:element name="outputStream" type="vr:Identifier" minOccurs="1" /&gt;
+      &lt;/xs:sequence&gt;
+    &lt;/xs:extension&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -3151,13 +3141,15 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
             </td>
           </tr>
         </tbody>
-      </table>The <code>&lt;outputStream&gt;</code> element gives the VOEvent
+      </table>
+
+      <p>The <code>&lt;outputStream&gt;</code> element gives the VOEvent
       stream that the annotator produced. It should be resolvable to a resource
       record of type <code>&lt;VOEventStream&gt;</code>. The
       <code>&lt;inputStream&gt;</code> element is of the complext type
       <code>voe:VOEventInputStream</code> which provides the identifier of the
       input stream and the parameters that need to be supplied for the
-      annotator to work properly.
+      annotator to work properly.</p>
 
       <div class="schemaOuter">
         <div class="schemaHeader">
@@ -3167,8 +3159,14 @@ capability, this is the <code>QueryCapRestriction</code> complex type:
 
         <div class="schemaInner">
           <pre>
-&lt;xs:complexType name="VOEventInputStream"&gt; &lt;xs:complexContent&gt; &lt;xs:sequence&gt; &lt;xs:element name="identifier" type="vr:Identifier" minOccurs="1"/&gt; &lt;xs:element name="parameters" type="voe:DataDictionary" minOccurs="1"/&gt; &lt;/xs:sequence&gt; &lt;/xs:complexContent&gt; &lt;/xs:complexType&gt;
-          </pre>
+&lt;xs:complexType name="VOEventInputStream"&gt;
+  &lt;xs:complexContent&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:element name="identifier" type="vr:Identifier" minOccurs="1" /&gt;
+      &lt;xs:element name="parameters" type="voe:DataDictionary" minOccurs="1" /&gt;
+    &lt;/xs:sequence&gt;
+  &lt;/xs:complexContent&gt;
+&lt;/xs:complexType&gt;</pre>
         </div>
       </div>
 
@@ -3819,7 +3817,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
           &lt;xs:element name="referenceURL" type="xs:anyURI" minOccurs="0"&gt;
             &lt;xs:annotation&gt;
               &lt;xs:documentation&gt;A URL pointing to a human-readable document
-              describing this TCPV interface.&lt;/xs:documentation&gt;
+              describing this VTP interface.&lt;/xs:documentation&gt;
             &lt;/xs:annotation&gt;
           &lt;/xs:element&gt;
           &lt;xs:element name="description" type="xs:string" minOccurs="0"&gt;
